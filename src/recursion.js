@@ -56,6 +56,34 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+
+    if (!array.length) {
+        return 0;
+    }
+
+    if (array.length === 1) {
+        return array[0];
+    }
+
+    var flatArray = array.flat();
+    /*
+    if (!flatArray) {
+        var flatArray = [];
+    }
+    for (i = 0; i < array.length; i++) {
+        for (j = 0; j < array.length[i]; j++) {
+            flatArray.push(array[i][j]);
+        }
+    }
+    */
+
+    console.log(flatArray);
+    var lastNum = array[array.length - 1];
+    var restOfArray = array.slice(0, array.length - 1);
+    var sumOfRestOfList = sum(restOfArray);
+
+    return lastNum + sumOfRestOfList;
+
 };
 
 // 4. Check if a number is even.
@@ -74,6 +102,15 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+    if (n === 0) {
+        return 0;
+    }
+    if (n > 0) {
+        return n - 1 + sumBelow(n - 1);
+    }
+    if  (n < 0) {
+        return n + 1 + sumBelow(n + 1);
+    }
 };
 
 // 6. Get the integers within a range (x, y).
