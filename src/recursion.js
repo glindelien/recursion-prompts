@@ -61,26 +61,14 @@ var arraySum = function(array) {
         return 0;
     }
 
-    if (array.length === 1) {
-        return array[0];
-    }
-
-    var flatArray = array.flat();
-    /*
-    if (!flatArray) {
-        var flatArray = [];
-    }
-    for (i = 0; i < array.length; i++) {
-        for (j = 0; j < array.length[i]; j++) {
-            flatArray.push(array[i][j]);
-        }
-    }
-    */
-
-    console.log(flatArray);
     var lastNum = array[array.length - 1];
+
+    if (Array.isArray(lastNum)) {
+        lastNum = arraySum(lastNum);
+    }
+    
     var restOfArray = array.slice(0, array.length - 1);
-    var sumOfRestOfList = sum(restOfArray);
+    var sumOfRestOfList = arraySum(restOfArray);
 
     return lastNum + sumOfRestOfList;
 
